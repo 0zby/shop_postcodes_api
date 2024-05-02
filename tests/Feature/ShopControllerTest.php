@@ -21,7 +21,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 54.52360000;
         $shop->longitude = -1.55950000;
         $shop->is_open = true;
-        $shop->store_type = 'Takeout';
+        $shop->shop_type = 'Takeaway';
         $shop->max_delivery_meters = 1000;
         $shop->save();
 
@@ -47,7 +47,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 0;
         $shop->longitude = 0;
         $shop->is_open = true;
-        $shop->store_type = 'Takeout';
+        $shop->shop_type = 'Takeaway';
         $shop->max_delivery_meters = 1000;
         $shop->save();
 
@@ -73,7 +73,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 54.52360000;
         $shop->longitude = -1.55950000;
         $shop->is_open = true;
-        $shop->store_type = 'Takeout';
+        $shop->shop_type = 'Takeaway';
         $shop->max_delivery_meters = 1000;
         $shop->save();
 
@@ -99,7 +99,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 54.52360000;
         $shop->longitude = -1.55950000;
         $shop->is_open = true;
-        $shop->store_type = 'Takeout';
+        $shop->shop_type = 'Takeaway';
         $shop->max_delivery_meters = 1;
         $shop->save();
 

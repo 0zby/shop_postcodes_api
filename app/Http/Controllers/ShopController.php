@@ -80,7 +80,7 @@ class ShopController extends Controller
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'is_open' => 'required|boolean',
-            'store_type' => ['required', 'string', Rule::enum(ShopType::class)],
+            'shop_type' => ['required', 'string', Rule::enum(ShopType::class)],
             'max_delivery_meters' => 'required|integer',
         ]);
 
@@ -89,7 +89,7 @@ class ShopController extends Controller
         $shop->latitude = $request->latitude;
         $shop->longitude = $request->longitude;
         $shop->is_open = $request->is_open;
-        $shop->store_type = $request->store_type;
+        $shop->shop_type = $request->shop_type;
         $shop->max_delivery_meters = $request->max_delivery_meters;
         $shop->save();
 

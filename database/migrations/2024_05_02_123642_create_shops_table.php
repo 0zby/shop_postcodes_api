@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('is_open')->default(false);
 
             // An enum is an option here, but I personally don't like some of the behaviour
-            $table->string('store_type')->nullable(false);
+            $table->string('shop_type')->nullable(false);
             $table->integer('max_delivery_meters')->nullable(false);
             $table->timestamps();
         });

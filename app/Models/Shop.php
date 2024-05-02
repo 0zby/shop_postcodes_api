@@ -16,7 +16,7 @@ use PHPCoord\UnitOfMeasure\Angle\Degree;
  * @property float $latitude The latitude of the shop.
  * @property float $longitude The longitude of the shop.
  * @property bool $is_open Whether the shop is open.
- * @property ShopType $store_type The type of the shop.
+ * @property ShopType $shop_type The type of the shop.
  * @property int $max_delivery_meters The maximum distance in meters the shop delivers to.
  * @property \Carbon\Carbon $created_at When the record was created.
  * @property \Carbon\Carbon $updated_at When the record was last updated.
@@ -28,13 +28,13 @@ class Shop extends Model
         'latitude',
         'longitude',
         'is_open',
-        'store_type',
+        'shop_type',
         'max_delivery_meters',
     ];
 
     protected $casts = [
         'is_open' => 'boolean',
-        'store_type' => ShopType::class,
+        'shop_type' => ShopType::class,
     ];
 
     /**
