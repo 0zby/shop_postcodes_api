@@ -14,6 +14,11 @@ use Illuminate\Validation\Rule;
 
 class ShopController extends Controller
 {
+    /**
+     * The distance in meters to consider a shop as nearby.
+     */
+    private const NEARBY_DISTANCE_METERS = 1000;
+
     public function index(): JsonResponse
     {
         return response()->json(Shop::all());
@@ -34,13 +39,14 @@ class ShopController extends Controller
             return response()->json(['message' => 'Postcode not found.'], 404);
         }
 
-        // This is not optimal - it feels like with a bit of maths we can query the database at least for a rough estimate of the shops that are near a postcode.
-        $shops = Shop::all();
-        $nearShops = $shops->filter(function ($shop) use ($postcode) {
-            $distance = $shop->distanceTo($postcode->latitude, $postcode->longitude);
-            // I've set distance to 3000 meters as a rough estimate of what "near" means but perhaps we should configure it or accept it in the request.
-            return $distance <= 3000;
-        });
+        $nearShops = Shop::whereRaw(
+            'ST_Distance_Sphere(point(shops.latitude, shops.longitude), point(?, ?)) <= ?',
+            [
+                $postcode->latitude,
+                $postcode->longitude,
+                self::NEARBY_DISTANCE_METERS,
+            ],
+        )->get();
 
         return response()->json($nearShops);
     }
@@ -55,16 +61,23 @@ class ShopController extends Controller
     {
         $preparedPostcode = $this->preparePostcode($postcodeString);
 
-        $postcode = Postcode::where('postcode', $preparedPostcode)->firstOrFail();
+        try {
+            $postcode = Postcode::where('postcode', $preparedPostcode)->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            Log::warning('Postcode not found.', ['postcode' => $preparedPostcode]);
+            return response()->json(['message' => 'Postcode not found.'], 404);
+        }
 
-        // Again it feels like with some maths we can stop querying all shops and just query the ones that are within the delivery range or at least a good estimate.
-        $shops = Shop::open()->get();
-        $deliveryShops = $shops->filter(function ($shop) use ($postcode) {
-            $distance = $shop->distanceTo($postcode->latitude, $postcode->longitude);
-            return $distance <= $shop->max_delivery_meters;
-        });
+        $shops = Shop::open()
+            ->whereRaw(
+                'ST_Distance_Sphere(point(shops.latitude, shops.longitude), point(?, ?)) <= shops.max_delivery_meters',
+                [
+                    $postcode->latitude,
+                    $postcode->longitude,
+                ],
+            )->get();
 
-        return response()->json($deliveryShops);
+        return response()->json($shops);
     }
 
     /**
