@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Postcode;
 use App\Models\Shop;
+use App\Shop\ShopType;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ShopController extends Controller
 {
@@ -78,7 +80,7 @@ class ShopController extends Controller
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'is_open' => 'required|boolean',
-            'store_type' => 'required|string',
+            'store_type' => ['required', 'string', Rule::enum(ShopType::class)],
             'max_delivery_meters' => 'required|integer',
         ]);
 

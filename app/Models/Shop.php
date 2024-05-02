@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Shop\ShopType;
 use Illuminate\Database\Eloquent\Model;
 use PHPCoord\CoordinateReferenceSystem\Geographic2D;
 use PHPCoord\Point\GeographicPoint;
@@ -15,7 +16,7 @@ use PHPCoord\UnitOfMeasure\Angle\Degree;
  * @property float $latitude The latitude of the shop.
  * @property float $longitude The longitude of the shop.
  * @property bool $is_open Whether the shop is open.
- * @property string $store_type The type of the shop.
+ * @property ShopType $store_type The type of the shop.
  * @property int $max_delivery_meters The maximum distance in meters the shop delivers to.
  * @property \Carbon\Carbon $created_at When the record was created.
  * @property \Carbon\Carbon $updated_at When the record was last updated.
@@ -33,6 +34,7 @@ class Shop extends Model
 
     protected $casts = [
         'is_open' => 'boolean',
+        'store_type' => ShopType::class,
     ];
 
     /**

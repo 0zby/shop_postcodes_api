@@ -65,11 +65,11 @@ Tests are run simply with `./vendor/bin/sail artisan test`.
 
 Given more time I would like to:
 
-* document the endpoints and their usage
-* revisit the import process to add chunking to speed up the process
+* document the endpoints and their usage, perhaps with swagger
+* revisit the import process to add chunking to speed up the process and add some checks on the data coming in
 * add custom request objects to clean up validation steps from controller
 * add further unit tests
-* set up an enum for the store type for ease of use, validation in requests and so on
+* improve the messaging for the enum validation - default is not helpful "The selected store type is invalid."
 * add some authentication using some middleware so that the API is restricted
 * add some query scope for open shops since presumably only open shops will deliver!
 * add some response objects to solidify how the returns look exactly e.g. precision on long/lat
