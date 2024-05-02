@@ -69,9 +69,8 @@ Given more time I would like to:
 * revisit the import process to add chunking to speed up the process and add some checks on the data coming in
 * add custom request objects to clean up validation steps from controller
 * add further unit tests
-* improve the messaging for the enum validation - default is not helpful "The selected store type is invalid."
+* improve the messaging for the enum validation to include the valid options - default is not helpful "The selected store type is invalid."
 * add some authentication using some middleware so that the API is restricted
-* add some query scope for open shops since presumably only open shops will deliver!
 * add some response objects to solidify how the returns look exactly e.g. precision on long/lat
 * double check that the presion on the postcode table matches the import data, however there's an argument that greater precision may be futureproofing
 * make some factories and seeders so that we have some test data close to hand

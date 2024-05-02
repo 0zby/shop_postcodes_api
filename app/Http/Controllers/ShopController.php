@@ -58,7 +58,7 @@ class ShopController extends Controller
         $postcode = Postcode::where('postcode', $preparedPostcode)->firstOrFail();
 
         // Again it feels like with some maths we can stop querying all shops and just query the ones that are within the delivery range or at least a good estimate.
-        $shops = Shop::all();
+        $shops = Shop::open()->get();
         $deliveryShops = $shops->filter(function ($shop) use ($postcode) {
             $distance = $shop->distanceTo($postcode->latitude, $postcode->longitude);
             return $distance <= $shop->max_delivery_meters;

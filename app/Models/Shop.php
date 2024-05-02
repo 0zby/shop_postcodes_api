@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Shop\ShopType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use PHPCoord\CoordinateReferenceSystem\Geographic2D;
 use PHPCoord\Point\GeographicPoint;
@@ -36,6 +37,16 @@ class Shop extends Model
         'is_open' => 'boolean',
         'shop_type' => ShopType::class,
     ];
+
+    /**
+     * Scope a query to only include open shops.
+     *
+     * @param Builder $query The query to filter.
+     */
+    public function scopeOpen($query): Builder
+    {
+        return $query->where('is_open', true);
+    }
 
     /**
      * Calculate the distance in meters to a coordinate.
