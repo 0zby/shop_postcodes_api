@@ -75,6 +75,7 @@ class ShopController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        // I would like to make a custom request to remove the validation from the controller.
         $request->validate([
             'name' => 'required|string',
             'latitude' => 'required|numeric',
@@ -93,6 +94,7 @@ class ShopController extends Controller
         $shop->max_delivery_meters = $request->max_delivery_meters;
         $shop->save();
 
+        // I would like to add a custom response object
         return response()->json($shop, 201);
     }
 

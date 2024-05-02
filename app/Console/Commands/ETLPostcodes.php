@@ -47,6 +47,7 @@ class ETLPostcodes extends Command
         foreach ($csv->getRecords() as $record) {
             $postcode = Str::remove(' ', $record['pcd']);
 
+            // I would like to change this for efficiency by chunking the data and doing multiple inserts at once.
             Postcode::updateOrCreate(
                 ['postcode' => $postcode],
                 [

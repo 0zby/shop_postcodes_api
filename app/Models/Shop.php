@@ -57,6 +57,7 @@ class Shop extends Model
      */
     public function distanceTo(float $latitude, float $longitude): int
     {
+        // Now doing this in the DB but this could be useful to keep.
         $crs = Geographic2D::fromSRID(Geographic2D::EPSG_ED50);
         $shopLocation = GeographicPoint::create($crs, new Degree($this->latitude), new Degree($this->longitude));
         $givenLocation = GeographicPoint::create($crs, new Degree($latitude), new Degree($longitude));
