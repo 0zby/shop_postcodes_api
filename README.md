@@ -31,3 +31,25 @@ The output of task will be reviewed on different things, such as:
 The task should be submitted as source files (via BitBucket, GitHub).
 
 Please don't spend too long on the task. We're not expecting it to be perfect, so let us know what improvements you might make if you had more time.
+
+## Notes
+
+### General notes about additions
+
+* I would like to revisit the import process to add chunking to speed up the process.
+* I would like to add custom request objects to clean up validation steps from controller
+* I would like to add setup instructions to the readme
+* I would like to add unit tests
+* I would like to set up an enum for the store type for ease of use, validation in requests and so on
+* I would like to add some authentication using some middleware so that the API is restricted
+
+
+### Notes about coordinates and postcodes
+
+There's a lot of complexity dealing with coordinates that might not be immediately obvious. Such as the coordinates provided are approximations which may lead to edge cases where the centre of the point is inside the delivery radius but the actual address is outside the radius.
+
+Also I have assumed that we will calculate this as the crow flies. Actual delivery distace to something estimated to be 20 meters away, might be 500 meters away when accounting for one way systems, traffic flow etc. If doing this we could investigate forming a route and taking the length of the route at least but it's slower than treating it like geometry and calculating distance between points.
+
+I have only imported the postcode and the coordinates, however if the application is going to be build up, we may want further data.
+
+I did read in rare instances two streets can have the same postcode, so some thought needed around this if they got imported.
