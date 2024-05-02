@@ -42,6 +42,9 @@ Please don't spend too long on the task. We're not expecting it to be perfect, s
 * I would like to add unit tests
 * I would like to set up an enum for the store type for ease of use, validation in requests and so on
 * I would like to add some authentication using some middleware so that the API is restricted
+* I would like to add some query scope for open shops since presumably only open shops will deliver!
+* I would like to add some response objects to solidify how the returns look exactly e.g. precision on long/lat
+* I would like to double check that the presion on the postcode table matches the import data, however there's an argument that greater precision may be futureproofing
 
 
 ### Notes about coordinates and postcodes
