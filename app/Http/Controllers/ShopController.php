@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Postcode;
 use App\Models\Shop;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ShopController extends Controller
@@ -24,8 +26,13 @@ class ShopController extends Controller
     public function nearPostcode(string $postcode): JsonResponse
     {
         // This is not optimal - it feels like with a bit of maths we can query the database at least for a rough estimate of the shops that are near a postcode.
-        // Do custom exception for postcode not found and respond accordingly.
-        $postcode = Postcode::where('postcode', $postcode)->firstOrFail();
+        try {
+            $postcode = Postcode::where('postcode', $postcode)->firstOrFail();
+        } catch (ModelNotFoundException $exception) {
+            Log::warning('Postcode not found.', ['postcode' => $postcode]);
+            return response()->json(['message' => 'Postcode not found.'], 404);
+        }
+
         $shops = Shop::all();
         $nearShops = $shops->filter(function ($shop) use ($postcode) {
             $distance = $shop->distanceTo($postcode->latitude, $postcode->longitude);
