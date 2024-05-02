@@ -52,6 +52,7 @@ Launch the containers `./vendor/bin/sail up -d`.
 
 Run the migrations `./vendor/bin/sail artisan migrate`.
 
+If posting to the endpoints, ensure to set a header with Accept: application/json.
 
 ## Running tests
 
