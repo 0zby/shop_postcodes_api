@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Postcode;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use League\Csv\Exception as LeagueCSVException;
 use League\Csv\Reader;
 
@@ -44,8 +45,10 @@ class ETLPostcodes extends Command
         }
 
         foreach ($csv->getRecords() as $record) {
+            $postcode = Str::remove(' ', $record['pcd']);
+
             Postcode::updateOrCreate(
-                ['postcode' => $record['pcd']],
+                ['postcode' => $postcode],
                 [
                     'latitude' => $record['lat'],
                     'longitude' => $record['long'],
