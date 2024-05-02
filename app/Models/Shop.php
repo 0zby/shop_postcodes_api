@@ -31,6 +31,10 @@ class Shop extends Model
         'max_delivery_meters',
     ];
 
+    protected $casts = [
+        'is_open' => 'boolean',
+    ];
+
     /**
      * Calculate the distance in meters to a coordinate.
      *
