@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PHPCoord\CoordinateReferenceSystem\Geographic2D;
+use PHPCoord\Point\GeographicPoint;
+use PHPCoord\UnitOfMeasure\Angle\Degree;
 
 /**
  * A physical shop.
@@ -27,4 +30,21 @@ class Shop extends Model
         'store_type',
         'max_delivery_meters',
     ];
+
+    /**
+     * Calculate the distance in meters to a coordinate.
+     *
+     * @param float $latitude The latitude of the coordinate.
+     * @param float $longitude The longitude of the coordinate.
+     * @return int The distance in meters, rounded up to a meter.
+     */
+    public function distanceTo(float $latitude, float $longitude): int
+    {
+        $crs = Geographic2D::fromSRID(Geographic2D::EPSG_ED50);
+        $shopLocation = GeographicPoint::create($crs, new Degree($this->latitude), new Degree($this->longitude));
+        $givenLocation = GeographicPoint::create($crs, new Degree($latitude), new Degree($longitude));
+        $distance = $shopLocation->calculateDistance($givenLocation);
+
+        return ceil($distance->asMetres()->getValue());
+    }
 }
