@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Shop\ShopType;
 use App\Models\Shop;
 use App\Models\Postcode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,7 +22,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 54.52360000;
         $shop->longitude = -1.55950000;
         $shop->is_open = true;
-        $shop->shop_type = 'Takeaway';
+        $shop->shop_type = ShopType::TAKEAWAY;
         $shop->max_delivery_meters = 1000;
         $shop->save();
 
@@ -47,7 +48,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 0;
         $shop->longitude = 0;
         $shop->is_open = true;
-        $shop->shop_type = 'Takeaway';
+        $shop->shop_type = ShopType::TAKEAWAY;
         $shop->max_delivery_meters = 1000;
         $shop->save();
 
@@ -73,7 +74,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 54.52360000;
         $shop->longitude = -1.55950000;
         $shop->is_open = true;
-        $shop->shop_type = 'Takeaway';
+        $shop->shop_type = ShopType::TAKEAWAY;
         $shop->max_delivery_meters = 1000;
         $shop->save();
 
@@ -99,7 +100,7 @@ class ShopControllerTest extends TestCase
         $shop->latitude = 54.52360000;
         $shop->longitude = -1.55950000;
         $shop->is_open = true;
-        $shop->shop_type = 'Takeaway';
+        $shop->shop_type = ShopType::TAKEAWAY;
         $shop->max_delivery_meters = 1;
         $shop->save();
 
