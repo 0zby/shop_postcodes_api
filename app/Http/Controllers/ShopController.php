@@ -25,7 +25,6 @@ class ShopController extends Controller
      */
     public function nearPostcode(string $postcode): JsonResponse
     {
-        // This is not optimal - it feels like with a bit of maths we can query the database at least for a rough estimate of the shops that are near a postcode.
         try {
             $postcode = Postcode::where('postcode', $postcode)->firstOrFail();
         } catch (ModelNotFoundException $exception) {
@@ -33,6 +32,7 @@ class ShopController extends Controller
             return response()->json(['message' => 'Postcode not found.'], 404);
         }
 
+        // This is not optimal - it feels like with a bit of maths we can query the database at least for a rough estimate of the shops that are near a postcode.
         $shops = Shop::all();
         $nearShops = $shops->filter(function ($shop) use ($postcode) {
             $distance = $shop->distanceTo($postcode->latitude, $postcode->longitude);
