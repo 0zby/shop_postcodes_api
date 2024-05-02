@@ -32,13 +32,40 @@ The task should be submitted as source files (via BitBucket, GitHub).
 
 Please don't spend too long on the task. We're not expecting it to be perfect, so let us know what improvements you might make if you had more time.
 
+## Setup
+
+### Prerequisties
+
+* Docker
+* PHP
+* Composer
+
+Clone the repository using git.
+
+Change directory into the newly created repository folder.
+
+Install using composer `composer install`.
+
+Copy the example environment file `cp .env.example .env`.
+
+Launch the containers `./vendor/bin/sail up -d`.
+
+Run the migrations `./vendor/bin/sail artisan migrate`.
+
+
+## Running tests
+
+### Automated tests
+
+Tests are run simply with `./vendor/bin/sail artisan test`.
+
 ## Notes
 
 ### General notes about additions
 
+* I would like to document the endpoints and their usage.
 * I would like to revisit the import process to add chunking to speed up the process.
 * I would like to add custom request objects to clean up validation steps from controller
-* I would like to add setup instructions to the readme
 * I would like to add unit tests
 * I would like to set up an enum for the store type for ease of use, validation in requests and so on
 * I would like to add some authentication using some middleware so that the API is restricted
