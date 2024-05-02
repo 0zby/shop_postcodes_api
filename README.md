@@ -45,6 +45,7 @@ Please don't spend too long on the task. We're not expecting it to be perfect, s
 * I would like to add some query scope for open shops since presumably only open shops will deliver!
 * I would like to add some response objects to solidify how the returns look exactly e.g. precision on long/lat
 * I would like to double check that the presion on the postcode table matches the import data, however there's an argument that greater precision may be futureproofing
+* I would like to make some factories and seeders so that we have some test data close to hand.
 
 
 ### Notes about coordinates and postcodes
