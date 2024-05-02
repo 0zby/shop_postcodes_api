@@ -63,17 +63,19 @@ Tests are run simply with `./vendor/bin/sail artisan test`.
 
 ### General notes about additions
 
-* I would like to document the endpoints and their usage.
-* I would like to revisit the import process to add chunking to speed up the process.
-* I would like to add custom request objects to clean up validation steps from controller
-* I would like to add unit tests
-* I would like to set up an enum for the store type for ease of use, validation in requests and so on
-* I would like to add some authentication using some middleware so that the API is restricted
-* I would like to add some query scope for open shops since presumably only open shops will deliver!
-* I would like to add some response objects to solidify how the returns look exactly e.g. precision on long/lat
-* I would like to double check that the presion on the postcode table matches the import data, however there's an argument that greater precision may be futureproofing
-* I would like to make some factories and seeders so that we have some test data close to hand.
+Given more time I would like to:
 
+* document the endpoints and their usage
+* revisit the import process to add chunking to speed up the process
+* add custom request objects to clean up validation steps from controller
+* add further unit tests
+* set up an enum for the store type for ease of use, validation in requests and so on
+* add some authentication using some middleware so that the API is restricted
+* add some query scope for open shops since presumably only open shops will deliver!
+* add some response objects to solidify how the returns look exactly e.g. precision on long/lat
+* double check that the presion on the postcode table matches the import data, however there's an argument that greater precision may be futureproofing
+* make some factories and seeders so that we have some test data close to hand
+* extract code from the command for ease of testing, and write some tests for it
 
 ### Notes about coordinates and postcodes
 
