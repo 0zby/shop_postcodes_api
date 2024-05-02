@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Shop;
 use App\Models\Postcode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ShopControllerTest extends TestCase
