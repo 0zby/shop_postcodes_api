@@ -54,6 +54,12 @@ Run the migrations `./vendor/bin/sail artisan migrate`.
 
 If posting to the endpoints, ensure to set a header with Accept: application/json.
 
+The postcode data is acquired from https://parlvid.mysociety.org/os/ONSPD/2022-11.zip
+
+After downloading it and unzipping you can run the command `./vendor/bin/sail artisan app:etlpostcodes {filePath}` to import the data.
+
+The main file in the download is `ONSPD_NOV_2022_UK.csv`, though if you want to test it out with a smaller dataset you could choose one of the suffixed files such as `ONSPD_NOV_2022_UK_DL.csv`.
+
 ## Running tests
 
 ### Automated tests
@@ -68,6 +74,7 @@ Given more time I would like to:
 
 * document the endpoints and their usage, perhaps with swagger
 * revisit the import process to add chunking to speed up the process and add some checks on the data coming in
+* add some code to download and extract the postcode data before the import process
 * add custom request objects to clean up validation steps from controller
 * add further unit tests
 * improve the messaging for the enum validation to include the valid options - default is not helpful "The selected store type is invalid."
